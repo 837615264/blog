@@ -1,0 +1,35 @@
+<!-- Sidebar
+ ================================================== -->
+
+<div class="four columns sidebar offset-by-one textblocksidebar">
+
+    <div class="widget">
+        <h5>热门文章</h5>
+        <div class="widget_blogposts">
+            <ul>
+                <? foreach($article_hot as $v):?>
+                <li class="clearfix" style="margin-bottom: 20px">
+                    <div class="postinnershadow"></div>
+                    <a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>" class="smallhover"><img src="<?= $v['src']?>" alt="文章图片" /></a>
+                    <div class="postlink"><a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>"><?= $v['article_title']?></a></div>
+                    <div class="subline"><?= $v['article_hits']?> 次浏览&nbsp;|&nbsp;<a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>">评论（<?= $v['hot_comment_num']?>）</a></div>
+                </li>
+                <? endforeach;?>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="widget">
+        <h5>标签云</h5>
+        <div class="tagcloud">
+            <? foreach($tag_cloud as $v):?>
+            <a href="<?= site_url('Home/Tag/tag_search').'/'.$v['tag_id']?>"><?= $v['tag_name']?></a>
+            <? endforeach;?>
+            <div class="clear"></div>
+        </div>
+    </div><div class="clear"></div>
+
+    <div class="clear"></div>
+
+</div>

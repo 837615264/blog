@@ -1,0 +1,156 @@
+<? $this->load->view('Home/public/header.html')?>
+<!-- Page Title And Social
+    ================================================== -->
+
+<div class="pagetitle">
+    <div class="pagetitleholder"><h1><?= $header['header_index']?></h1></div>
+    <div class="socialholder">
+        <ul class="socialicons">
+            <li><img src="images/bilibilii.png" alt="bilibilii" class="scale-with-grid" /></li>
+        </ul>
+    </div>
+    <!--div class="headersearch">
+        <form class="searchform" method="get" action="#">
+        <input name="s" id="s" type="text" onFocus="if(this.value == 'Enter Search here...') { this.value = ''; }" onBlur="if(this.value == '') { this.value = 'Enter Search here...'; }" value="Enter Search here..." />
+        </form>
+    </div-->
+</div>
+
+<!-- Slider
+================================================== -->
+
+<div class="sixteen columns homeslider">
+    <div class="sliderinnershadow"></div>
+    <div class="flexslider clearfix">
+        <ul class="slides">
+            <li><img src="images/banner/banner_1.jpg" alt="RUPAN的个人博客" />
+                <div class="flex-caption">
+                    <h1><?= $banner['banner1_title']?><span class="themecolor"><?= $banner['banner1_b_title']?></span></h1>
+                    <?= $banner['banner1_intro']?>
+                    <div class="threedot"></div>
+                    <a href="<?= site_url('Home/Article/article_type').'/0/0'?>" class="button">进入我的博客 <span class="buttonarrow"></span></a>
+                </div>
+            </li>
+            <li><img src="images/banner/banner_2.jpg" alt="RUPAN的个人博客" />
+                <div class="flex-caption">
+                    <h1><?= $banner['banner2_title']?><span class="themecolor"><?= $banner['banner2_b_title']?></span></h1>
+                    <div class="threedot"></div>
+                    <?= $banner['banner2_intro']?>
+                </div>
+            </li>
+            <li><img src="images/banner/banner_3.jpg" alt="RUPAN的个人博客" />
+                <div class="flex-caption">
+                    <h4><?= $banner['banner3_intro']?></h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="sliderspacefix"></div>
+</div>
+
+<!-- Line Divider
+================================================== -->
+
+<div class="sixteen columns linedivider"></div>
+        <!-- Portfolio Teasers
+		================================================== -->
+
+        <div class="sixteen columns row divide">
+            <table><tr style="width:100%">
+                <td style="white-space:nowrap;"><h3 class="titledivider">一路走来</h3></td>
+                <td style="width:100%"><div class="dividerline"></div></td>
+                <td style="white-space:nowrap;"><div class="rightlink"><a href="<?= site_url('Home/Project/project')?>" class="titlelink">See Whole Portfolio <span class="buttonarrow"></span></a></div></td>
+            </tr></table>
+        </div>
+
+		<div class="sixteen columns row teasers portfolio">
+            <? foreach($project as $v):?>
+        	<div class="four columns teaser all-group web-group">
+               <div class="folioinnershadow"></div>
+               <a href="<?= $v['project_url']?>" data-text="" class="hovering"><img src="<?= base_url().'public/home/images/project/'.$v['project_image']?>" alt="<?= $v['project_title']?>" class="scale-with-grid" /></a>
+			   <div class="topline"><a href="<?= $v['project_url']?>"><?= $v['project_title']?></a></div>
+            </div>
+            <? endforeach;?>
+			<div class="clear"></div>
+		</div><div class="clear"></div>
+
+        <div class="sixteen columns linedivider"></div>
+
+        <!-- Text Block
+		================================================== -->
+
+        <div class="sixteen columns row divide">
+            <table><tr style="width:100%">
+                <td style="white-space:nowrap;"><h3 class="titledivider">最新文章</h3></td>
+                <td style="width:100%"><div class="dividerline"></div></td>
+                <td style="white-space:nowrap;"><div class="rightlink"><a href="#" class="titlelink">Learn More <span class="buttonarrow"></span></a></div></td>
+            </tr></table>
+        </div>
+
+		<div class="sixteen columns row textblock">
+            <? foreach($article as $k=>&$v):?>
+            <? if($k==3):?>
+            <div class="one_fourth lastcolumn">
+                <h5 class="teaserheadline"><?= $v['article_title']?></h5><div class="clear"></div>
+                <p style="overflow: hidden;height: 140px"><?= $v['article_content']?></p>
+                <a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>" class="button">查看更多 <span class="buttonarrow"></span></a>
+            </div>
+            <? else:?>
+            <div class="one_fourth">
+                <h5 class="teaserheadline"><?= $v['article_title']?></h5><div class="clear"></div>
+                <p style="overflow: hidden;height: 140px"><?= $v['article_content']?></p>
+                <a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>" class="button">查看更多 <span class="buttonarrow"></span></a>
+            </div>
+            <? endif;?>
+            <? endforeach;?>
+
+            <div class="clear"></div>
+        </div>
+
+        <div class="sixteen columns linedivider"></div>
+
+        <!-- News
+		================================================== -->
+        <div class="eight columns row">
+            <div class="eight columns divide alpha">
+                <table><tr style="width:100%">
+                    <td style="white-space:nowrap;"><h3 class="titledivider">最新评论</h3></td>
+                    <td style="width:100%"><div class="dividerline"></div></td>
+                    <td style="white-space:nowrap;"><div class="rightlink"><a href="<?= site_url('Home/Article/article_type/0/0')?>" class="titlelink">Go To Article <span class="buttonarrow"></span></a></div></td>
+                </tr></table>
+            </div>
+            <div class="eight columns alpha">
+                <? foreach($comment as $v):?>
+                <div class="eight columns alpha newsteaser row">
+                	<div class="newsinnershadow"></div>
+                    <a href="<?= $v['href']?>" data-text="" class="hovering"><img src="<?= $v['src']?>" alt="文章缩略图" /></a>
+                    <div class="topline"><a href="<?= $v['href']?>"><?= $v['title']?></a></div>
+                    <div class="subline"><a><?= $v['comment_content']?></a></div>
+                    <div class="newsmore">by <?= $v['comment_user']?> &nbsp; | &nbsp;  <?= $v['comment_add_time']?></div>
+                </div>
+                <? endforeach;?>
+            </div>
+		</div>
+
+        <!-- 小视频
+		================================================== -->
+
+        <div class="eight columns row">
+            <div class="eight columns divide alpha">
+                <table><tr style="width:100%">
+                    <td style="white-space:nowrap;"><h3 class="titledivider">哔哩哔哩</h3></td>
+                    <td style="width:100%"><div class="dividerline"></div></td>
+                    <td style="white-space:nowrap;"><div class="rightlink"><a href="<?= site_url('Home/Collect/collect_list')?>" class="titlelink">See All <span class="buttonarrow"></span></a></div></td>
+                </tr></table>
+            </div>
+            <object>
+                <embed src="swf/flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=<?= base_url().'public/home/media/lupin.flv'?>&LogoText=www.bilibilii.cn&IsAutoPlay=0" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="100%" height="250"></embed>
+            </object>
+		</div>
+
+      <!-- Bottom Padding Adjust
+       ================================================== -->
+       <div class="sixteen columns bottomadjust"></div>
+
+	</div><!-- container -->
+<? $this->load->view('Home/public/footer.html')?>

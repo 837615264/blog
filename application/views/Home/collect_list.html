@@ -1,0 +1,94 @@
+﻿<? $this->load->view('Home/public/header.html')?>
+    
+        <!-- Page Title And Social
+		================================================== -->
+        
+		<div class="pagetitle">
+        	<div class="pagetitleholder"><h1><?= $header['header_collect']?></h1></div>
+            <!--div class="headersearch">
+                <form class="searchform" method="get" action="#">
+                <input name="s" id="s" type="text" onFocus="if(this.value == 'Enter Search here...') { this.value = ''; }" onBlur="if(this.value == '') { this.value = 'Enter Search here...'; }" value="Enter Search here..." />
+                </form>
+            </div-->
+        </div>
+        
+        <!-- Line Divider
+		================================================== -->
+        
+        <div class="sixteen columns linedivider" style="margin-top: 0;"></div>
+        
+        <!-- Content Holder -->
+
+        <div class="eleven columns row textblock right">
+
+            <? foreach($collect as $v):?>
+            <!-- Blogpost -->
+            <div class="blogpost row">
+                <div class="blogdate">
+                    <div class="month"><?= $v['month']?></div>
+                    <div class="day"><?= $v['day']?></div>
+                    <div class="year"><?= $v['year']?></div>
+                </div>
+            <div class="postholder">
+            <div class="blogtitle"><h2><a href="<?= site_url('Home/Collect/collect').'/'.$v['collect_id']?>"><?= $v['collect_title']?></a></h2></div>
+            <div class="postinfo">
+                by RUPAN &nbsp; | &nbsp; <a href="<?= site_url('Home/Collect/collect').'/'.$v['collect_id']?>">评论（<?= $v['comment_num']?>）</a>
+            </div>
+            <div class="blogimage">
+                <div class="bloginnershadow"></div>
+                <a href="<?= site_url('Home/Collect/collect').'/'.$v['collect_id']?>" data-text="" class="hovering"><img src="<?= base_url().'public/home/images/collect/'.$v['collect_image']?>" alt="" class="scale-with-grid" /></a>
+            </div>
+            <div class="postbody">
+                <div class="postcontent"><?= $v['collect_content']?><br /><br /><a href="<?= site_url('Home/Collect/collect').'/'.$v['collect_id']?>" class="button">查看更多&nbsp;<span class="buttonarrow"></span></a></div>
+            </div>
+        </div>
+        <div class="eleven columns blogdivider alpha"></div>
+        <div class="clear"></div>
+    </div>
+    <? endforeach;?>
+
+
+    <!-- Pagination -->
+
+    <?= $page?>
+
+    <div class="clear"></div>
+</div>
+        
+        <!-- Sidebar
+        ================================================== -->
+
+        <div class="four columns sidebar textblocksidebar">
+            
+            <div class="widget">
+                <h5>热门收藏</h5>
+                <div class="widget_blogposts">
+                    <ul>
+                        <? foreach($collect_hot as $v):?>
+                        <li class="clearfix">
+                            <div class="postinnershadow"></div>
+                            <a href="<?= site_url('Home/Collect/collect').'/'.$v['collect_id']?>" class="smallhover"><img src="<?= $v['src']?>" alt="收藏缩略图" /></a>
+                            <div class="postlink"><a href="<?= site_url('Home/Collect/collect').'/'.$v['collect_id']?>"><?= $v['collect_title']?></a></div>
+                            <div class="subline"><?= $v['collect_hits']?> 次浏览&nbsp;|&nbsp;<a href="<?= site_url('Home/Collect/collect').'/'.$v['collect_id']?>">评论（<?= $v['hot_comment_num']?>）</a></div>
+                        </li>
+                        <? endforeach;?>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            
+            <div class="clear"></div>
+    
+        </div>
+        
+        <!-- Space Adjuster
+        ================================================== -->
+        
+        <div class="sixteen columns bottomadjust"></div>
+   
+	</div><!-- container -->
+
+	<!-- Footer
+	================================================== -->
+
+<? $this->load->view('Home/public/footer.html')?>

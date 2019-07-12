@@ -1,0 +1,85 @@
+<? $this->load->view('Admin/header.html')?>
+<section id="content" class="container">
+    <!-- 面包屑 -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">主页</a></li>
+        <li><a href="#">分类管理</a></li>
+        <li class="active">分类列表</li>
+    </ol>
+
+    <h4 class="page-title">分类列表</h4>
+    <hr class="whiter" />
+    <div class="block-area" id="tableStriped">
+        <h3 class="block-title">分类列表</h3>
+        <div tabindex="5005" style="overflow: hidden;" class="table-responsive overflow">
+            <table class="tile table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>分类名称</th>
+                    <th>父级ID</th>
+                    <th>分类路径</th>
+                    <th>排序</th>
+                    <th>文章数量</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <? foreach($type as $v):?>
+                <tr>
+                    <td><?= $v['type_id']?></td>
+                    <td><?= str_repeat('&nbsp;&nbsp;',(substr_count($v['newpath'],'-')-1)*4)?><?= $v['type_name']?></td>
+                    <td><?= $v['type_parent']?></td>
+                    <td><?= $v['type_path']?></td>
+                    <td><?= $v['type_sort']?></td>
+                    <td><?= $v['type_count']?></td>
+                    <td><a href="<?= site_url('Admin/Type/type_update').'/'.$v['type_id']?>"><input value="修改" class="btn" type="button"></a>&nbsp;&nbsp;<input value="删除" class="btn" type="button" id="del" tid="<?= $v['type_id']?>"></td>
+                </tr>
+                <? endforeach;?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="block-area">
+
+    </div>
+</section>
+
+<!-- Javascript Libraries -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script> <!-- jQuery Library -->
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- UX -->
+<script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="js/calendar.min.js"></script> <!-- Calendar -->
+<script src="js/feeds.min.js"></script> <!-- News Feeds -->
+
+
+<!-- All JS functions -->
+<script src="js/functions.js"></script>
+</body>
+</html>
+<script>
+    $(document).on("click","#del",function(){
+        if(confirm("确认要删除吗？")){
+            var _this=$(this)
+            var type_id=_this.attr("tid")
+            $.ajax({
+                url:"<?= site_url('Admin/Type/type_del')?>",
+                type:"POST",
+                data:"type_id="+type_id,
+                dataType:"json",
+                success:function(msg){
+                    if(msg.error==1){
+                        _this.parent().parent().remove()
+                    }
+                }
+            })
+        }
+    })
+</script>

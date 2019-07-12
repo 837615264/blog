@@ -1,0 +1,81 @@
+<? $this->load->view('Home/public/header.html')?>
+    
+        <!-- Page Title And Social
+		================================================== -->
+        
+		<div class="pagetitle">
+        	<div class="pagetitleholder"><h1><?= $header['header_home']?></h1></div>
+
+            <!--div class="headersearch">
+                <form class="searchform" method="get" action="#">
+                <input name="s" id="s" type="text" onFocus="if(this.value == 'Enter Search here...') { this.value = ''; }" onBlur="if(this.value == '') { this.value = 'Enter Search here...'; }" value="Enter Search here..." />
+                </form>
+            </div-->
+        </div>
+        
+        <!-- Line Divider
+		================================================== -->
+        
+        <div class="sixteen columns linedivider" style="margin-top: 0;"></div>
+        
+        <!-- Content Holder -->
+		<div class="sixteen columns row textblock blogsingle fullblog nodate sideview">
+        
+        	<!-- Blogpost -->
+            <div class="blogpost row">
+                <div class="postholder">
+                    <div class="blogimage">
+                    	<div class="bloginnershadow"></div>
+                        <div class="flexslider postslider clearfix">
+                            <ul class="slides">
+                                <li><img src="images/photo/<?= $resume['photo_1']?>" alt="" /></li>
+                                <li><img src="images/photo/<?= $resume['photo_2']?>" alt="" /></li>
+                                <li><img src="images/photo/<?= $resume['photo_3']?>" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="blogtitle"><h2>个人资料</h2></div>
+                    <div class="postinfo">
+
+                    </div>
+                    
+                    <div class="postbody">
+                        <div class="postcontent">
+                            <div class="one_half lastcolumn">
+                                <ul class="square">
+                                    <li><?= $resume['name']?> (<?= $resume['nickname']?>)</li>
+                                    <li><?= $resume['age']?>岁</li>
+                                    <li><?= $resume['constellation']?></li>
+                                    <li><?= $resume['profession']?></li>
+                                    <li>来自 <?= $resume['from']?></li>
+                                    <li>现处 <?= $resume['lives']?></li>
+                                    <li>QQ <span style="color:#ffd200;"><?= $resume['qq']?></span></li>
+                                    <li>微信 <span style="color:#ffd200;"><?= $resume['wx']?></span></li>
+                                    <li>邮箱 <span style="color:#ffd200;"><?= $resume['email']?></span></li>
+                                    <li>个人网站 <a href="http://<?= $resume['domain']?>"><?= $resume['domain']?></a></li>
+                                    <li><?= $resume['short_text']?></li>
+                                </ul>
+                            </div><div class="clear"></div>
+                            <p><?= $resume['text']?></p>
+
+                    	</div>
+                        <div class="moreprojects"><a href="<?= site_url('Home/Home/index')?>" class="button left" style="margin-right:5px;">返回首页</a></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div> 
+ 
+            <div class="clear"></div>
+		</div>
+
+        <!-- Space Adjuster
+        ================================================== -->
+        
+        <div class="sixteen columns bottomadjust"></div>
+   
+	</div><!-- container -->
+
+	<!-- Footer
+	================================================== -->
+
+<? $this->load->view('Home/public/footer.html')?>

@@ -1,0 +1,50 @@
+<? $this->load->view('Home/public/header.html')?>
+        
+
+
+		<div class="sixteen columns row textblock">
+
+        	<div class="one_half">
+            	<h3>我&nbsp;&nbsp;要&nbsp;&nbsp;一&nbsp;&nbsp;步&nbsp;&nbsp;一&nbsp;&nbsp;步&nbsp;&nbsp;往&nbsp;&nbsp;上&nbsp;&nbsp;爬 </h3>
+            </div>
+            <div class="one_half lastcolumn">
+            	</div><div class="clear"></div>
+
+            <div class="clear"></div>
+        </div>
+        
+        <!-- Portfolio Teasers
+		================================================== -->
+        
+        <div class="sixteen columns row noheadline"></div>
+        
+        <div class="sixteen columns row portfolio_filter">
+        	<ul>
+                <li><a class="portfolio_selector" data-group="all-group" href="#">所有项目</a><span>|</span></li>
+                <li><a class="portfolio_selector" data-group="web-group" href="#">网页设计</a><span>|</span></li>
+                <li><a class="portfolio_selector" data-group="shop-group" href="#">电子商城</a><span>|</span></li>
+                <li><a class="portfolio_selector" data-group="blog-group" href="#">个人博客</a><span>|</span></li>
+                <li><a class="portfolio_selector" data-group="other-group" href="#">其他</a></li>
+            </ul>
+        </div><div class="clear"></div>
+        
+		<div class="sixteen columns row teasers portfolio">
+
+            <? foreach($project as $v):?>
+       		<div class="four columns teaser all-group <?= $v['project_type']?>-group">
+               <div class="folioinnershadow"></div>
+               <a href="<?= $v['project_url']?>" data-text="" class="hovering"><img src="<?= base_url().'public/home/images/project/'.$v['project_image']?>" alt="<?= $v['project_title']?>" class="scale-with-grid" /></a>
+			   <div class="topline"><a href="<?= $v['project_url']?>"><?= $v['project_title']?></a></div>
+            </div>
+            <? endforeach;?>
+			<div class="clear"></div>
+		</div><div class="clear"></div> 
+        
+        <!-- Space Adjuster
+        ================================================== -->
+        
+        <div class="sixteen columns bottomadjust"></div>
+            
+	</div><!-- container -->
+
+<? $this->load->view('Home/public/footer.html')?>

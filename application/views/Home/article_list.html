@@ -1,0 +1,76 @@
+<? $this->load->view('Home/public/header.html')?>
+
+        <!-- Page Title And Social
+		================================================== -->
+
+		<div class="pagetitle">
+        	<div class="pagetitleholder"><h1><?= $header['header_article']?></h1></div>
+
+            <div class="headersearch">
+                <form class="searchform" method="get" action="<?= site_url('Home/Article/article_search')?>">
+                <input name="keyword" id="s" type="text" onFocus="if(this.value == '在这里输入搜索...') { this.value = ''; }" onBlur="if(this.value == '') { this.value = '在这里输入搜索...'; }" value="在这里输入搜索..." />
+                </form>
+            </div>
+        </div>
+
+        <!-- Line Divider
+		================================================== -->
+
+        <div class="sixteen columns linedivider" style="margin-top: 0;"></div>
+        
+        <!-- Content Holder -->
+		<div class="eleven columns row textblock left">
+
+            <? foreach($article as &$v):?>
+            <!-- Blogpost -->
+            <div class="blogpost row">
+                <div class="blogdate">
+                    <div class="month"><?= $v['month']?></div>
+                    <div class="day"><?= $v['day']?></div>
+                    <div class="year"><?= $v['year']?></div>
+                </div>
+                <div class="postholder">
+                    <div class="blogtitle"><h2><a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>"><?= $v['article_title']?></a></h2></div>
+                    <div class="postinfo">
+                    	 by RUPAN &nbsp; | &nbsp; <a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>">评论（<?= $v['comment_num']?>）</a>
+                    </div>
+                	<div class="blogimage">
+                    	<div class="bloginnershadow"></div>
+                        <a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>" data-text="" class="hovering">
+                            <? if(empty($v['article_image'])):?>
+                            <img src="<?= base_url().'public/home/default.png'?>" alt="" class="scale-with-grid" />
+                            <? else:?>
+                            <img src="<?= base_url().'public/home/images/article/'.$v['article_image']?>" alt="" class="scale-with-grid" />
+                            <? endif;?>
+                        </a>
+                    </div>  
+                    <div class="postbody">
+                        <div class="postcontent"><?= $v['article_content']?><br /><br /><a href="<?= site_url('Home/Article/article').'/'.$v['article_id']?>" class="button">查看更多&nbsp;<span class="buttonarrow"></span></a></div>
+                    </div>
+                </div>
+                <div class="eleven columns blogdivider alpha"></div>
+                <div class="clear"></div>
+            </div> 
+            <? endforeach;?>
+
+
+            <!-- Pagination -->
+                    
+            <?= $page?>
+            
+            <div class="clear"></div>
+		</div>
+
+    <? $this->load->view('Home/public/side.html')?>
+        
+        <!-- Space Adjuster
+        ================================================== -->
+        
+        <div class="sixteen columns bottomadjust"></div>
+   
+	</div><!-- container -->
+
+	<!-- Footer
+	================================================== -->
+
+    <? $this->load->view('Home/public/footer.html')?>

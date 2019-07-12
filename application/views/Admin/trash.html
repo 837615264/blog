@@ -1,0 +1,143 @@
+<? $this->load->view('Admin/header.html')?>
+<section id="content" class="container">
+    <!-- 面包屑 -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">主页</a></li>
+        <li><a href="#">回收站</a></li>
+        <li class="active">回收站列表</li>
+    </ol>
+
+    <h4 class="page-title">回收站列表</h4>
+    <hr class="whiter" />
+    <div class="block-area" id="tableStriped">
+        <h3 class="block-title">回收站列表</h3>
+        <div tabindex="5005" style="overflow: hidden;" class="table-responsive overflow">
+            <table class="tile table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>标题</th>
+                    <th>所属模块</th>
+                    <th>内容</th>
+                    <th>展示图片</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                <? foreach($trash_info as &$v):?>
+                <tr>
+                    <td><?=$v['trash_id']?></td>
+                    <td><?=$v['trash_title']?></td>
+                    <td><?=$v['trash_type']?></td>
+                    <? if(strlen($v['trash_content'])>60):?>
+                    <? $v['trash_content']=substr($v['trash_content'],0,60).'...';?>
+                    <? endif;?>
+                    <td><?=$v['trash_content']?></td>
+                    <td><img src="<?= $v['trash_image']?>" alt="图片" style="width: 50px"/></td>
+                    <td><input value="恢复" class="btn" type="button" id="recover" tid="<?=$v['trash_old_id']?>">&nbsp;&nbsp;<input value="删除" class="btn" type="button" id="del" tid="<?=$v['trash_old_id']?>"></td>
+                </tr>
+                <? endforeach;?>
+                </tbody>
+            </table>
+        </div>
+        <div id="page_box">
+            <?= $page?>
+        </div>
+        <button class="btn" disabled="disabled" id="page_now">第1页</button>
+    </div>
+    <div class="block-area">
+
+    </div>
+</section>
+
+<!-- Javascript Libraries -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script> <!-- jQuery Library -->
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- UX -->
+<script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="js/calendar.min.js"></script> <!-- Calendar -->
+<script src="js/feeds.min.js"></script> <!-- News Feeds -->
+
+
+<!-- All JS functions -->
+<script src="js/functions.js"></script>
+</body>
+</html>
+<script>
+    $(document).on("click","#del",function(){
+        if(confirm("此操作将无法恢复，确认要删除吗？")){
+            var _this=$(this)
+            var old_id=_this.attr("tid")
+            var trash_id=_this.parent().siblings().eq(0).html()
+            var type=_this.parent().siblings().eq(2).html()
+            $.ajax({
+                url:"<?= site_url('Admin/Trash/trash_del')?>",
+                type:"POST",
+                data:{old_id:old_id,trash_id:trash_id,type:type},
+                dataType:"json",
+                success:function(msg){
+                    if(msg.error==1){
+                        _this.parent().parent().remove()
+                    }
+                }
+            })
+        }
+    })
+
+    $(document).on("click","#recover",function(){
+        if(confirm("确认要恢复吗？")){
+            var _this=$(this)
+            var old_id=_this.attr("tid")
+            var trash_id=_this.parent().siblings().eq(0).html()
+            var type=_this.parent().siblings().eq(2).html()
+            $.ajax({
+                url:"<?= site_url('Admin/Trash/trash_recover')?>",
+                type:"POST",
+                data:{old_id:old_id,type:type,trash_id:trash_id},
+                dataType:"json",
+                success:function(msg){
+                    if(msg.error==1){
+                        _this.parent().parent().remove()
+                    }
+                }
+            })
+        }
+    })
+
+    $(document).on("click",".btn-sm",function(){
+        var url=$(this).children("a").attr("href")
+        getPage(url)
+    })
+
+    function getPage(url="http://www.blog.com/index.php/Admin/Trash/trash_list_ajax/0"){
+        $.ajax({
+            url:url,
+            data:"",
+            dataType:"json",
+            success:function(msg){
+                $("#tbody").empty()
+                $.each(msg.trash_info,function(k,v){
+                    var tr=$("<tr></tr>")
+                    tr.append('<td>'+ v.trash_id+'</td>')
+                    tr.append('<td>'+ v.trash_title+'</td>')
+                    tr.append('<td>'+ v.trash_type+'</td>')
+                    if(v.trash_content.length>60){
+                        v.trash_content=v.trash_content.substr(0,60)+"..."
+                    }
+                    tr.append('<td>'+ v.trash_content+'</td>')
+                    tr.append('<td><img src="'+v.trash_image+'" alt="图片" style="width: 50px"/></td>')
+                    tr.append('<td><input value="恢复" class="btn" type="button" id="recover" tid="'+ v.trash_old_id+'">&nbsp;&nbsp;<input value="删除" class="btn" type="button" id="del" tid="'+ v.trash_old_id+'"></td>')
+                    $("#tbody").append(tr)
+                })
+                $("#page_box").html(msg.page)
+                $("#page_now").html("第"+msg.page_now+"页")
+            }
+        })
+    }
+</script>

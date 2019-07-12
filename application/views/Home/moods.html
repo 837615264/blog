@@ -1,0 +1,67 @@
+<? $this->load->view('Home/public/header.html')?>
+    
+        <!-- Page Title And Social
+		================================================== -->
+        
+		<div class="pagetitle">
+        	<div class="pagetitleholder"><h1><?= $header['header_mood']?></h1></div>
+            <!--div class="headersearch">
+                <form class="searchform" method="get" action="#">
+                <input name="s" id="s" type="text" onFocus="if(this.value == 'Enter Search here...') { this.value = ''; }" onBlur="if(this.value == '') { this.value = 'Enter Search here...'; }" value="Enter Search here..." />
+                </form>
+            </div-->
+        </div>
+        
+        <!-- Line Divider
+		================================================== -->
+        
+        <div class="sixteen columns linedivider" style="margin-top: 0;"></div>
+        
+        <!-- Content Holder -->
+		<div class="sixteen columns row textblock fullblog sideview">
+        	
+            <!-- Blogpost -->
+            <? foreach($mood as $v):?>
+            <div class="blogpost row">
+                <div class="blogdate">
+                    <div class="month"><?= $v['month']?></div>
+                    <div class="day"><?= $v['day']?></div>
+                    <div class="year"><?= $v['year']?></div>
+                </div>
+                <div class="blogimage">
+                	<div class="bloginnershadow"></div>
+                    <? if(empty($v['mood_image'])):?>
+                    <img src="default.png" alt="" class="scale-with-grid" />
+                    <? else:?>
+                    <img src="images/mood/<?= $v['mood_image']?>" alt="" class="scale-with-grid" />
+                    <? endif;?>
+                </div>
+                <div class="blogtitle"><h2><a href="javascript:;"><?= $v['mood_title']?></a></h2></div>
+                <div class="postinfo"></div>
+                
+                <div class="postbody">
+                    <div class="postcontent"><?= $v['mood_content']?></div>
+                </div>
+                <div class="sixteen columns blogdivider alpha"></div>
+                <div class="clear"></div>
+            </div>
+            <? endforeach;?>
+
+            <!-- Pagination -->
+                    
+            <?= $page?>
+            
+            <div class="clear"></div>
+		</div>
+        
+        <!-- Space Adjuster
+        ================================================== -->
+        
+        <div class="sixteen columns bottomadjust"></div>
+   
+	</div><!-- container -->
+
+	<!-- Footer
+	================================================== -->
+
+<? $this->load->view('Home/public/footer.html')?>

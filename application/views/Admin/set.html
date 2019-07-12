@@ -1,0 +1,359 @@
+<? $this->load->view('Admin/header.html')?>
+<section id="content" class="container">
+    <!-- 面包屑 -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">主页</a></li>
+        <li class="active">设置</li>
+    </ol>
+
+    <h4 class="page-title">设置</h4>
+    <hr class="whiter" />
+
+    <div class="block-area">
+
+        <hr class="whiter" />
+        <h2 class="page-title">个人设置</h2>
+
+        <h3 class="block-title">昵称</h3>
+        <input class="form-control m-b-10" placeholder="昵称" type="text" id="resume_nickname" value="<?= $resume['nickname']?>">
+
+        <h3 class="block-title">个性签名</h3>
+        <input class="form-control m-b-10" placeholder="个性签名" type="text" id="resume_introduction" value="<?= $resume['introduction']?>">
+
+        <h3 class="block-title">个人简介</h3>
+        <input class="form-control m-b-10" placeholder="个人简介" type="text" id="resume_short_text" value="<?= $resume['short_text']?>">
+
+        <h3 class="block-title">自我介绍</h3>
+        <input class="form-control m-b-10" placeholder="自我介绍" type="text" id="resume_text" value="<?= $resume['text']?>">
+
+        <h3 class="block-title">头像</h3>
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail small form-control">
+                <img src="<?= base_url().'public/admin/img/'.$resume['portrait']?>">
+            </div>
+            <div class="fileupload-preview form-control fileupload-exists thumbnail small"></div>
+                        <span class="btn btn-file btn-alt btn-sm">
+                            <span class="fileupload-new">选择头像</span>
+                            <span class="fileupload-exists">换一张</span>
+                            <input type="file" id="portrait_file"/>
+                        </span>
+            <a href="#" class="btn-sm btn fileupload-exists" data-dismiss="fileupload">删除</a>
+        </div>
+
+        <h3 class="block-title">相片1</h3>
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail small form-control">
+                <img src="<?= base_url().'public/home/images/photo/'.$resume['photo_1']?>">
+            </div>
+            <div class="fileupload-preview form-control fileupload-exists thumbnail small"></div>
+                        <span class="btn btn-file btn-alt btn-sm">
+                            <span class="fileupload-new">选择相片</span>
+                            <span class="fileupload-exists">换一张</span>
+                            <input type="file" id="photo1"/>
+                        </span>
+            <a href="#" class="btn-sm btn fileupload-exists" data-dismiss="fileupload">删除</a>
+        </div>
+
+        <h3 class="block-title">相片2</h3>
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail small form-control">
+                <img src="<?= base_url().'public/home/images/photo/'.$resume['photo_2']?>">
+            </div>
+            <div class="fileupload-preview form-control fileupload-exists thumbnail small"></div>
+                        <span class="btn btn-file btn-alt btn-sm">
+                            <span class="fileupload-new">选择相片</span>
+                            <span class="fileupload-exists">换一张</span>
+                            <input type="file" id="photo2"/>
+                        </span>
+            <a href="#" class="btn-sm btn fileupload-exists" data-dismiss="fileupload">删除</a>
+        </div>
+
+        <h3 class="block-title">相片3</h3>
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail small form-control">
+                <img src="<?= base_url().'public/home/images/photo/'.$resume['photo_3']?>">
+            </div>
+            <div class="fileupload-preview form-control fileupload-exists thumbnail small"></div>
+                        <span class="btn btn-file btn-alt btn-sm">
+                            <span class="fileupload-new">选择相片</span>
+                            <span class="fileupload-exists">换一张</span>
+                            <input type="file" id="photo3"/>
+                        </span>
+            <a href="#" class="btn-sm btn fileupload-exists" data-dismiss="fileupload">删除</a>
+        </div>
+
+        <h3 class="block-title">邮箱</h3>
+        <input class="form-control m-b-10" placeholder="邮箱" type="text" id="resume_email" value="<?= $resume['email']?>">
+
+        <h3 class="block-title">职业</h3>
+        <input class="form-control m-b-10" placeholder="职业" type="text" id="resume_profession" value="<?= $resume['profession']?>">
+
+        <h3 class="block-title">年龄</h3>
+        <input class="form-control m-b-10" placeholder="年龄" type="text" id="resume_age" value="<?= $resume['age']?>">
+
+        <h3 class="block-title">居住地</h3>
+        <input class="form-control m-b-10" placeholder="居住地" type="text" id="resume_lives" value="<?= $resume['lives']?>">
+
+        <input value="保存个人设置" class="btn" id="resume_btn" type="button">
+
+        <br><br><hr class="whiter" />
+        <h2 class="page-title">首页设置</h2>
+
+        <h3 class="block-title">轮播图片</h3>
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail small form-control">
+                <img src="<?= base_url().'public/home/images/banner/'.$banner['banner_1']?>">
+            </div>
+            <div class="fileupload-preview form-control fileupload-exists thumbnail small"></div>
+                        <span class="btn btn-file btn-alt btn-sm">
+                            <span class="fileupload-new">选择第一张图片</span>
+                            <span class="fileupload-exists">换一张</span>
+                            <input type="file" id="shuffling_one"/>
+                        </span>
+            <a href="#" class="btn-sm btn fileupload-exists" data-dismiss="fileupload">删除</a>
+        </div>
+
+        <h3 class="block-title">文字标题</h3>
+        <input class="form-control m-b-10" placeholder="文字标题" type="text" id="banner1_title" value="<?= $banner['banner1_title']?>">
+
+        <h3 class="block-title">文字标题（重点加粗）</h3>
+        <input class="form-control m-b-10" placeholder="文字标题" type="text" id="banner1_b_title" value="<?= $banner['banner1_b_title']?>">
+
+        <h3 class="block-title">文字内容</h3>
+        <input class="form-control m-b-10" placeholder="文字内容" type="text" id="banner1_intro" value="<?= $banner['banner1_intro']?>">
+
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail small form-control">
+                <img src="<?= base_url().'public/home/images/banner/'.$banner['banner_2']?>">
+            </div>
+            <div class="fileupload-preview form-control fileupload-exists thumbnail small"></div>
+                        <span class="btn btn-file btn-alt btn-sm">
+                            <span class="fileupload-new">选择第二张图片</span>
+                            <span class="fileupload-exists">换一张</span>
+                            <input type="file" id="shuffling_two"/>
+                        </span>
+            <a href="#" class="btn-sm btn fileupload-exists" data-dismiss="fileupload">删除</a>
+        </div>
+
+        <h3 class="block-title">文字标题</h3>
+        <input class="form-control m-b-10" placeholder="文字标题" type="text" id="banner2_title" value="<?= $banner['banner2_title']?>">
+
+        <h3 class="block-title">文字标题（重点加粗）</h3>
+        <input class="form-control m-b-10" placeholder="文字标题" type="text" id="banner2_b_title" value="<?= $banner['banner2_b_title']?>">
+
+        <h3 class="block-title">文字内容</h3>
+        <input class="form-control m-b-10" placeholder="文字内容" type="text" id="banner2_intro" value="<?= $banner['banner2_intro']?>">
+
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+            <div class="fileupload-new thumbnail small form-control">
+                <img src="<?= base_url().'public/home/images/banner/'.$banner['banner_3']?>">
+            </div>
+            <div class="fileupload-preview form-control fileupload-exists thumbnail small"></div>
+                        <span class="btn btn-file btn-alt btn-sm">
+                            <span class="fileupload-new">选择第三张图片</span>
+                            <span class="fileupload-exists">换一张</span>
+                            <input type="file" id="shuffling_three"/>
+                        </span>
+            <a href="#" class="btn-sm btn fileupload-exists" data-dismiss="fileupload">删除</a>
+        </div>
+
+        <h3 class="block-title">文字内容</h3>
+        <input class="form-control m-b-10" placeholder="文字内容" type="text" id="banner3_intro" value="<?= $banner['banner3_intro']?>">
+
+        <input value="保存首页设置" class="btn" id="home_btn" type="button">
+
+        <br><br><hr class="whiter" />
+        <h2 class="page-title">标题设置</h2>
+
+        <h3 class="block-title">首页标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_index" value="<?= $header['header_index']?>">
+
+        <h3 class="block-title">个人中心标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_home" value="<?= $header['header_home']?>">
+
+        <h3 class="block-title">文章标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_article" value="<?= $header['header_article']?>">
+
+        <h3 class="block-title">文章详情标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_article_intro" value="<?= $header['header_article_intro']?>">
+
+        <h3 class="block-title">收藏标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_collect" value="<?= $header['header_collect']?>">
+
+        <h3 class="block-title">收藏详情标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_collect_intro" value="<?= $header['header_collect_intro']?>">
+
+        <h3 class="block-title">心情标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_mood" value="<?= $header['header_mood']?>">
+
+        <h3 class="block-title">游戏标题</h3>
+        <input class="form-control m-b-10" placeholder="标题内容" type="text" id="header_game" value="<?= $header['header_game']?>">
+
+        <input value="保存标题设置" class="btn" id="title_btn" type="button">
+    </div>
+</section>
+<!-- Javascript Libraries -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script> <!-- jQuery Library -->
+<script src="js/jquery-ui.min.js"></script> <!-- jQuery UI -->
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+
+<!--  Form Related -->
+<script src="js/validation/validate.min.js"></script> <!-- jQuery Form Validation Library -->
+<script src="js/validation/validationEngine.min.js"></script> <!-- jQuery Form Validation Library - requirred with above js -->
+<script src="js/select.min.js"></script> <!-- Custom Select -->
+<script src="js/chosen.min.js"></script> <!-- Custom Multi Select -->
+<script src="js/datetimepicker.min.js"></script> <!-- Date & Time Picker -->
+<script src="js/colorpicker.min.js"></script> <!-- Color Picker -->
+<script src="js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
+<script src="js/autosize.min.js"></script> <!-- Textare autosize -->
+<script src="js/toggler.min.js"></script> <!-- Toggler -->
+<script src="js/input-mask.min.js"></script> <!-- Input Mask -->
+<script src="js/spinner.min.js"></script> <!-- Spinner -->
+<script src="js/slider.min.js"></script> <!-- Input Slider -->
+<script src="js/fileupload.min.js"></script> <!-- File Upload -->
+
+<!-- Text Editor -->
+<script src="js/editor2.min.js"></script> <!-- WYSIWYG Editor -->
+<script src="js/markdown.min.js"></script> <!-- Markdown Editor -->
+
+<!-- UX -->
+<script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="js/calendar.min.js"></script> <!-- Calendar -->
+<script src="js/feeds.min.js"></script> <!-- News Feeds -->
+
+
+<!-- All JS functions -->
+<script src="js/functions.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        /* Tag Select */
+        (function(){
+            /* Limited */
+            $(".tag-select-limited").chosen({
+                max_selected_options: 5
+            });
+
+            /* Overflow */
+            $('.overflow').niceScroll();
+        })();
+
+        /* Input Masking - you can include your own way */
+        (function(){
+            $('.mask-date').mask('00/00/0000');
+            $('.mask-time').mask('00:00:00');
+            $('.mask-date_time').mask('00/00/0000 00:00:00');
+            $('.mask-cep').mask('00000-000');
+            $('.mask-phone').mask('0000-0000');
+            $('.mask-phone_with_ddd').mask('(00) 0000-0000');
+            $('.mask-phone_us').mask('(000) 000-0000');
+            $('.mask-mixed').mask('AAA 000-S0S');
+            $('.mask-cpf').mask('000.000.000-00', {reverse: true});
+            $('.mask-money').mask('000.000.000.000.000,00', {reverse: true});
+            $('.mask-money2').mask("#.##0,00", {reverse: true, maxlength: false});
+            $('.mask-ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {translation: {'Z': {pattern: /[0-9]/, optional: true}}});
+            $('.mask-ip_address').mask('099.099.099.099');
+            $('.mask-percent').mask('##0,00%', {reverse: true});
+            $('.mask-credit_card').mask('0000 0000 0000 0000');
+        })();
+
+        /* Spinners */
+        (function(){
+            //Basic
+            $('.spinner-1').spinedit();
+
+            //Set Value
+            $('.spinner-2').spinedit('setValue', 100);
+
+            //Set Minimum
+            $('.spinner-3').spinedit('setMinimum', -10);
+
+            //Set Maximum
+            $('.spinner-4').spinedit('setMaxmum', 100);
+
+            //Set Step
+            $('.spinner-5').spinedit('setStep', 10);
+
+            //Set Number Of Decimals
+            $('.spinner-6').spinedit('setNumberOfDecimals', 2);
+        })();
+    });
+</script>
+
+</body>
+</html>
+<script>
+    $("#resume_btn").on("click",function(){
+        var formdata=new FormData()
+        var _this=$(this)
+        formdata.append('nickname',$("#resume_nickname").val())
+        formdata.append('short_text',$("#resume_short_text").val())
+        formdata.append('text',$("#resume_text").val())
+        formdata.append('introduction',$("#resume_introduction").val())
+        formdata.append('portrait', $('#portrait_file')[0].files[0])
+        formdata.append('photo1', $('#photo1')[0].files[0])
+        formdata.append('photo2', $('#photo2')[0].files[0])
+        formdata.append('photo3', $('#photo3')[0].files[0])
+        formdata.append('email',$("#resume_email").val())
+        formdata.append('profession',$("#resume_profession").val())
+        formdata.append('age',$("#resume_age").val())
+        formdata.append('lives',$("#resume_lives").val())
+        $.ajax({
+            url: "<?= site_url('Admin/Set/resume_set')?>",
+            type: 'POST',
+            cache: false,
+            data: formdata,
+            processData: false,
+            contentType: false
+        })
+    })
+
+    $("#home_btn").on("click",function(){
+        var formdata=new FormData()
+        var _this=$(this)
+        formdata.append('one', $('#shuffling_one')[0].files[0]);
+        formdata.append('two', $('#shuffling_two')[0].files[0]);
+        formdata.append('three', $('#shuffling_three')[0].files[0]);
+        formdata.append('banner1_title', $('#banner1_title').val());
+        formdata.append('banner1_b_title', $('#banner1_b_title').val());
+        formdata.append('banner1_intro', $('#banner1_intro').val());
+        formdata.append('banner2_title', $('#banner2_title').val());
+        formdata.append('banner2_b_title', $('#banner2_b_title').val());
+        formdata.append('banner2_intro', $('#banner2_intro').val());
+        formdata.append('banner3_intro', $('#banner3_intro').val());
+        $.ajax({
+            url: "<?= site_url('Admin/Set/home_set')?>",
+            type: 'POST',
+            cache: false,
+            data: formdata,
+            processData: false,
+            contentType: false
+        })
+    })
+
+    $("#title_btn").on("click",function(){
+        var formdata=new FormData()
+        var _this=$(this)
+        formdata.append('header_index', $('#header_index').val());
+        formdata.append('header_home', $('#header_home').val());
+        formdata.append('header_article', $('#header_article').val());
+        formdata.append('header_article_intro', $('#header_article_intro').val());
+        formdata.append('header_collect', $('#header_collect').val());
+        formdata.append('header_collect_intro', $('#header_collect_intro').val());
+        formdata.append('header_mood', $('#header_mood').val());
+        formdata.append('header_game', $('#header_game').val());
+        $.ajax({
+            url: "<?= site_url('Admin/Set/title_set')?>",
+            type: 'POST',
+            cache: false,
+            data: formdata,
+            processData: false,
+            contentType: false
+        })
+    })
+</script>

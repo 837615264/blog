@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Particle Web</title>
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" style="position: absolute; height: 100%; width:100%;z-index: 1"></canvas>
+    <div style="position: fixed;z-index: 2;color: white;margin-top: 25%;margin-left: 45%">
+        <table>
+            <tr>
+                <td>账号：</td>
+                <td><input type="text" id="username" style="color: white;background:rgba(0, 0, 0, 0);border: none;font-weight: 900;"/></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input type="text" id="password" style="color: white;background:rgba(0, 0, 0, 0);border: none;font-weight: 900;"/></td>
+            </tr>
+            <tr>
+                <td>方式：</td>
+                <td>
+                    &nbsp;&nbsp;<input type="radio" name="type" value="1" checked/>最新
+                    &nbsp;&nbsp;<input type="radio" name="type" value="0"/>所有
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" value="获取" id="get" style="color: white;background:rgba(0, 0, 0, 0);font-weight: 900;margin-top: 10px "/>
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <script src="lib/jq.js"></script>
+    <script src="./lib/index.js" charset="utf-8"></script>
+</body></html>
+<script>
+    $(document).on("click","#get",function(){
+        var username=$("#username").val()
+        var password=$("#password").val()
+        var type=$('input[name="type"]:checked').val()
+        if(username==''){
+            alert('你倒是填账号啊')
+        }else if(password==''){
+            alert('你的密码呢？')
+        }else{
+            $.ajax({
+                url:"./lib/get.php",
+                data:{username:username,password:password,type:type},
+                type:"POST",
+                dataType:"json",
+                success:function(msg){
+                    if(msg.status==1){
+                        location.href='./最新答案/'
+                    }else if(msg.status==2){
+                        location.href='./所有答案/'
+                    }else{
+                        alert(msg.error)
+                    }
+                }
+            })
+        }
+
+
+    })
+</script>

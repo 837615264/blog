@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+<head>
+    <base href="<?= base_url().'public/admin/'?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no">
+    <meta charset="UTF-8">
+
+    <meta name="description" content="Violate Responsive Admin Template">
+    <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
+
+    <title>Super Admin Responsive Template</title>
+    <script src="<?= base_url().'public/jquery-1.7.2.min.js'?>"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                url:"<?= site_url('Admin/Admin/admin_ready')?>",
+                dataType:"json",
+                success:function(msg){
+                    $(".side-border").eq(0).children("div").children("a").css("width",msg.article+"%").attr("data-original-title",msg.article+"%")
+                    $(".side-border").eq(2).children("div").children("a").css("width",msg.mood+"%").attr("data-original-title",msg.mood+"%")
+                }
+            })
+        })
+    </script>
+    <!-- CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
+    <link href="css/calendar.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/icons.css" rel="stylesheet">
+    <link href="css/generics.css" rel="stylesheet">
+</head>
+<body id="skin-blur-violate">
+
+<header id="header" class="media">
+    <a href="" id="menu-toggle"></a>
+    <a class="logo pull-left" href="index.html">RUPAN</a>
+
+    <div class="media-body">
+        <div class="media" id="top-menu">
+            <div class="pull-left tm-icon">
+                <a data-drawer="messages" class="drawer-toggle" href="">
+                    <i class="sa-top-message"></i>
+                    <i class="n-count animated">5</i>
+                    <span>新消息</span>
+                </a>
+            </div>
+            <div class="pull-left tm-icon">
+                <a data-drawer="notifications" class="drawer-toggle" href="">
+                    <i class="sa-top-updates"></i>
+                    <i class="n-count animated">9</i>
+                    <span>新回复</span>
+                </a>
+            </div>
+
+
+
+            <div id="time" class="pull-right">
+                <span id="hours"></span>
+                :
+                <span id="min"></span>
+                :
+                <span id="sec"></span>
+            </div>
+
+            <div class="media-body">
+                <input type="text" class="main-search">
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="clearfix"></div>
+
+<section id="main" class="p-relative" role="main">
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+
+        <!-- Sidbar Widgets -->
+        <div class="side-widgets overflow">
+            <!-- Profile Menu -->
+            <div class="text-center s-widget m-b-25 dropdown" id="profile-menu">
+                <a href="" data-toggle="dropdown">
+                    <!--头像-->
+                    <img class="profile-pic animated" src="img/portrait.png" alt="头像" id="portrait">
+                </a>
+                <ul class="dropdown-menu profile-menu">
+                    <li><a href="<?= site_url('Admin/Resume/resume')?>">个人中心</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+                    <li><a href="">消息列表</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+                    <li><a href="<?= site_url('Admin/Set/set')?>">设置</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+                    <li><a href="<?= site_url('Admin/Login/logout')?>">退出</a> <i class="icon left">&#61903;</i><i class="icon right">&#61815;</i></li>
+                </ul>
+                <h4 class="m-0"><img src="img/rupan.png" alt="rupan"/></h4>
+            </div>
+
+            <!-- 日历 -->
+            <div class="s-widget m-b-25">
+                <div id="sidebar-calendar"></div>
+            </div>
+
+            <!-- 我的域名 -->
+            <div class="s-widget m-b-25">
+                <h2 class="tile-title">
+                    站点域名
+                </h2>
+
+                <div class="s-widget-body">
+                    <img src="img/domain.png" alt="bilibilii.cn"/>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="s-widget m-b-25">
+                <h2 class="tile-title">
+                    空间内存
+                </h2>
+
+                <div class="s-widget-body">
+                    <div class="side-border">
+                        <small>学无止境</small>
+                        <div class="progress progress-small">
+                            <a href="#" data-toggle="tooltip" title="" class="progress-bar tooltips progress-bar-danger" style="width: 0%;" data-original-title="0%">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="side-border">
+                        <small>精品收藏</small>
+                        <div class="progress progress-small">
+                            <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-info" style="width: 0%;" data-original-title="0%">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="side-border">
+                        <small>心情感悟</small>
+                        <div class="progress progress-small">
+                            <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-warning" style="width: 0%;" data-original-title="0%">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="side-border">
+                        <small>轻松时刻</small>
+                        <div class="progress progress-small">
+                            <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-success" style="width: 0%;" data-original-title="0%">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="side-border">
+                        <small>评论</small>
+                        <div class="progress progress-small">
+                            <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-success" style="width: 0%;" data-original-title="0%">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Menu -->
+        <ul class="list-unstyled side-menu">
+            <li class="active">
+                <a class="sa-side-home" href="<?= site_url('Admin/Admin/index')?>">
+                    <span class="menu-item"  id="home_page">后台首页</span>
+                </a>
+            </li>
+            <li>
+                <a class="sa-side-typography" href="typography.html">
+                    <span class="menu-item">网页字体</span>
+                </a>
+            </li>
+            <li class="dropdown">
+                <a class="sa-side-widget" href="content-widgets.html">
+                    <span class="menu-item">游戏管理</span>
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <li><a href="<?= site_url('Admin/Game/game_list')?>">游戏列表</a></li>
+                    <li><a href="<?= site_url('Admin/Game/game_add')?>">游戏添加</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="sa-side-table" href="tables.html">
+                    <span class="menu-item">文章分类管理</span>
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <li><a href="<?= site_url('Admin/Type/type_list')?>">分类列表</a></li>
+                    <li><a href="<?= site_url('Admin/Type/type_add')?>">分类添加</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="sa-side-page" href="">
+                    <span class="menu-item">文章管理</span>
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <li><a href="<?= site_url('Admin/Article/article_list')?>">文章列表</a></li>
+                    <li><a href="<?= site_url('Admin/Article/article_add')?>">文章添加</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="sa-side-ui" href="">
+                    <span class="menu-item">收藏管理</span>
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <li><a href="<?= site_url('Admin/Collect/collect_list')?>">收藏列表</a></li>
+                    <li><a href="<?= site_url('Admin/Collect/collect_add')?>">添加收藏</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="sa-side-calendar" href="calendar.html">
+                    <span class="menu-item">随笔管理</span>
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <li><a href="<?= site_url('Admin/Mood/mood_list')?>">随笔列表</a></li>
+                    <li><a href="<?= site_url('Admin/Mood/mood_add')?>">发表随笔</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="sa-side-form" href="">
+                    <span class="menu-item">项目管理</span>
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <li><a href="<?= site_url('Admin/Project/project_list')?>">项目列表</a></li>
+                    <li><a href="<?= site_url('Admin/Project/project_add')?>">项目添加</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a class="sa-side-chart" href="charts.html">
+                    <span class="menu-item">标签管理</span>
+                </a>
+                <ul class="list-unstyled menu-item">
+                    <li><a href="<?= site_url('Admin/Tag/tag_list')?>">标签列表</a></li>
+                    <li><a href="<?= site_url('Admin/Tag/tag_add')?>">标签添加</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="sa-side-folder" href="<?= site_url('Admin/Trash/trash_list')?>">
+                    <span class="menu-item">回收站</span>
+                </a>
+            </li>
+
+
+        </ul>
+
+    </aside>

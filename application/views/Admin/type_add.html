@@ -1,0 +1,163 @@
+<? $this->load->view('Admin/header.html')?>
+<section id="content" class="container">
+        <!-- 面包屑 -->
+        <ol class="breadcrumb hidden-xs">
+            <li><a href="#">主页</a></li>
+            <li><a href="#">分类管理</a></li>
+            <li class="active">分类添加</li>
+        </ol>
+
+        <h4 class="page-title">分类添加</h4>
+        <hr class="whiter" />
+
+    <div class="block-area">
+
+        <h3 class="block-title">分类名称</h3>
+    <input class="form-control m-b-10" placeholder="分类名称" type="text" id="type_name">
+
+        <h3 class="block-title">父级分类</h3>
+
+            <select style="display: none;" class="select" id="parent">
+                <option value="0">顶级分类</option>
+                <? foreach($type as $v):?>
+                <option value="<?=$v['type_path'].'|'.$v['type_id'] ?>"><?= str_repeat('&nbsp;&nbsp;',(substr_count($v['newpath'],'-')-1)*4)?><?= $v['type_name']?></option>
+                <? endforeach;?>
+            </select>
+
+        <h3 class="block-title">排序</h3>
+        <input class="form-control m-b-10" placeholder="排序" type="text" id="type_sort">
+            <input value="添加" class="btn" id="btn" type="button">
+
+    </div>
+</section>
+<!-- Javascript Libraries -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script> <!-- jQuery Library -->
+<script src="js/jquery-ui.min.js"></script> <!-- jQuery UI -->
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+
+<!--  Form Related -->
+<script src="js/validation/validate.min.js"></script> <!-- jQuery Form Validation Library -->
+<script src="js/validation/validationEngine.min.js"></script> <!-- jQuery Form Validation Library - requirred with above js -->
+<script src="js/select.min.js"></script> <!-- Custom Select -->
+<script src="js/chosen.min.js"></script> <!-- Custom Multi Select -->
+<script src="js/datetimepicker.min.js"></script> <!-- Date & Time Picker -->
+<script src="js/colorpicker.min.js"></script> <!-- Color Picker -->
+<script src="js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
+<script src="js/autosize.min.js"></script> <!-- Textare autosize -->
+<script src="js/toggler.min.js"></script> <!-- Toggler -->
+<script src="js/input-mask.min.js"></script> <!-- Input Mask -->
+<script src="js/spinner.min.js"></script> <!-- Spinner -->
+<script src="js/slider.min.js"></script> <!-- Input Slider -->
+<script src="js/fileupload.min.js"></script> <!-- File Upload -->
+
+<!-- Text Editor -->
+<script src="js/editor2.min.js"></script> <!-- WYSIWYG Editor -->
+<script src="js/markdown.min.js"></script> <!-- Markdown Editor -->
+
+<!-- UX -->
+<script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="js/calendar.min.js"></script> <!-- Calendar -->
+<script src="js/feeds.min.js"></script> <!-- News Feeds -->
+
+
+<!-- All JS functions -->
+<script src="js/functions.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        /* Tag Select */
+        (function(){
+            /* Limited */
+            $(".tag-select-limited").chosen({
+                max_selected_options: 5
+            });
+
+            /* Overflow */
+            $('.overflow').niceScroll();
+        })();
+
+        /* Input Masking - you can include your own way */
+        (function(){
+            $('.mask-date').mask('00/00/0000');
+            $('.mask-time').mask('00:00:00');
+            $('.mask-date_time').mask('00/00/0000 00:00:00');
+            $('.mask-cep').mask('00000-000');
+            $('.mask-phone').mask('0000-0000');
+            $('.mask-phone_with_ddd').mask('(00) 0000-0000');
+            $('.mask-phone_us').mask('(000) 000-0000');
+            $('.mask-mixed').mask('AAA 000-S0S');
+            $('.mask-cpf').mask('000.000.000-00', {reverse: true});
+            $('.mask-money').mask('000.000.000.000.000,00', {reverse: true});
+            $('.mask-money2').mask("#.##0,00", {reverse: true, maxlength: false});
+            $('.mask-ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {translation: {'Z': {pattern: /[0-9]/, optional: true}}});
+            $('.mask-ip_address').mask('099.099.099.099');
+            $('.mask-percent').mask('##0,00%', {reverse: true});
+            $('.mask-credit_card').mask('0000 0000 0000 0000');
+        })();
+
+        /* Spinners */
+        (function(){
+            //Basic
+            $('.spinner-1').spinedit();
+
+            //Set Value
+            $('.spinner-2').spinedit('setValue', 100);
+
+            //Set Minimum
+            $('.spinner-3').spinedit('setMinimum', -10);
+
+            //Set Maximum
+            $('.spinner-4').spinedit('setMaxmum', 100);
+
+            //Set Step
+            $('.spinner-5').spinedit('setStep', 10);
+
+            //Set Number Of Decimals
+            $('.spinner-6').spinedit('setNumberOfDecimals', 2);
+        })();
+    });
+</script>
+
+</body>
+</html>
+<script>
+    $("#btn").on("click",function(){
+        var obj=new Object()
+        var _this=$(this)
+        obj['type_name']=$("#type_name").val()
+        obj['parent']=$("#parent").val()
+        obj['type_sort']=$("#type_sort").val()
+        $.ajax({
+            url:"<?= site_url('Admin/Type/type_add')?>",
+            type:"POST",
+            data:obj,
+            dataType:"json",
+            success:function(msg){
+                if(msg.error==1){
+                    _this.after('<div class="alert alert-success alert-icon" id="message" style="display: none">'+msg.message+'<i class="icon"></i> </div>')
+                    $("#message").show(1000,function(){
+                        setTimeout(function(){
+                            $("#message").hide(2500,function(){
+                                $("#message").remove()
+                            })
+                        },1000)
+                    })
+                }else{
+                    _this.after('<div class="alert alert-danger alert-icon" id="message">'+msg.message+'<i class="icon"></i> </div>')
+                    $("#message").show(1000,function(){
+                        setTimeout(function(){
+                            $("#message").hide(2500,function(){
+                                $("#message").remove()
+                            })
+                        },1000)
+                    })
+                }
+            }
+        })
+    })
+</script>

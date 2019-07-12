@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+    <!-- Basic Page Needs
+  ================================================== -->
+    <meta charset="utf-8" />
+    <? if(empty($header_title)):?>
+    <title>RUPAN的个人博客</title>
+    <? else:?>
+    <title><?= $header_title?> -- RUPAN的个人博客</title>
+    <? endif;?>
+    <base href="<?= base_url().'public/home/'?>">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
+    <link rel="stylesheet" href="css/screen.css" />
+    <link rel="stylesheet" href="css/mediaelementplayer.css" />
+    <link rel="stylesheet" href="css/share.css"/>
+    <link rel="stylesheet" href="css/prism.css"/>
+    <link rel="stylesheet" type="text/css"  href="css/online.css"/>
+    <!--[if IE 7]><link rel="stylesheet" href="css/ie8.css"><![endif]-->
+    <!--[if IE 8]><link rel="stylesheet" href="css/ie8.css"><![endif]-->
+
+
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" />
+
+
+    <!-- Fonts
+	================================================== -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic,300,300italic' rel='stylesheet' type='text/css' />
+
+    <!-- Scripts
+	================================================== -->
+    <script src="<?= base_url().'public/jquery-1.7.2.min.js'?>" type="text/javascript"></script>
+
+    <script src="js/jquery.easing.1.3.js" type="text/javascript"></script>
+    <script src="js/jquery.animate-colors-min.js" type="text/javascript"></script>
+    <script src="js/ddsmoothmenu.js" type="text/javascript"></script>
+    <script src="js/jquery.cssAnimate.mini.js" type="text/javascript"></script>
+    <script src="js/jquery.fitvids.js" type="text/javascript"></script>
+    <script src="js/jquery.flexslider-min.js" type="text/javascript"></script>
+    <script src="js/jquery.prettyPhoto.js" type="text/javascript"></script>
+    <script src="js/mediaelement-and-player.min.js"></script>
+    <script src="js/screen.js" type="text/javascript"></script>
+    <script src="js/prism.js" type="text/javascript"></script>
+    <script src="js/online.js" type="text/javascript"></script>
+
+
+
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
+<body>
+
+<!-- Site Backgrounds
+================================================== -->
+
+<!-- Change to class="poswrapheaderline wide" and class="headerline full" for a full-width header line -->
+<div class="poswrapheaderline wide"><div class="headerline full"></div></div>
+<!-- Remove or uncomment depending on if you want a background image or tile -->
+<!--div class="tiledbackground"></div-->
+<img src="images/backgrounds/girl.jpg" alt="" id="background" />
+<!-- Remove the bgoverlay div if you don't want the dark pattern overlay above the image -->
+<div class="bgoverlay"></div>
+<!-- Change to class="poswrapper wide" and class="whitebackground full" for a full-width site background -->
+<div class="poswrapper"><div class="whitebackground"></div></div>
+
+<div class="container main portfolio4column">
+
+    <!-- 头部 | Logo, Menu
+    ================================================== -->
+
+    <div class="sixteen columns header">
+
+        <a href="<?= site_url('Home/Home/aboutMe')?>" class="logohover"><div class="logo"></div></a>
+        <div class="mainmenu">
+            <div id="mainmenu" class="ddsmoothmenu">
+                <ul>
+                    <li><a href="<?= site_url('Home/Home/index')?>">首页</a></li>
+                    <li><a href="<?= site_url('Home/Article/article_type').'/0/0'?>">学无止境</a>
+                        <ul>
+                            <? foreach($type as $val):?>
+                            <li><a href="<?= site_url('Home/Article/article_type').'/0/'.$val['type_id']?>"><?= $val['type_name']?></a>
+                                <ul>
+                            <? foreach($val['son'] as $v):?>
+                                    <li><a href="<?= site_url('Home/Article/article_type').'/0/'.$v['type_id']?>"><?= $v['type_name']?></a></li>
+                                <? endforeach;?>
+                                </ul>
+                            </li>
+                            <? endforeach;?>
+
+                        </ul>
+                    </li>
+                    <li><a href="<?= site_url('Home/Collect/collect_list')?>">精品收藏</a></li>
+                    <li><a href="<?= site_url('Home/Mood/mood_list')?>">心情感悟</a></li>
+                    <li><a href="<?= site_url('Home/Game/game_list')?>">轻松时刻</a></li>
+                </ul>
+                <br style="clear: left" />
+            </div>
+            <!--  Menu end-->
+        </div>
+    </div>
+

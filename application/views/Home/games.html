@@ -1,0 +1,59 @@
+<? $this->load->view('Home/public/header.html')?>
+    
+        <!-- Page Title And Social
+		================================================== -->
+        
+		<div class="pagetitle">
+        	<div class="pagetitleholder"><h1><?= $header['header_game']?></h1></div>
+        </div>
+        
+        <!-- Line Divider
+		================================================== -->
+        
+        <div class="sixteen columns linedivider" style="margin-top: 0;"></div>
+        
+        <!-- Content Holder -->
+		<div class="sixteen columns row textblock fullblog sideview nodate">
+        	
+            <!-- Portfolio Item -->
+            <? foreach($game as $v):?>
+            <div class="blogpost row">
+                <div class="postholder">
+                	<div class="blogimage">
+                    	<div class="bloginnershadow"></div>
+                        <div class="flexslider postslider clearfix">
+                            <ul class="slides">
+                                <li><img src="images/game/<?= $v['game_image']?>" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="blogtitle"><h2><a href="<?= $v['game_url']?>"><?= $v['game_title']?></a></h2></div>
+                    <div class="postinfo">
+                         <a href="javascript:;"><?= $v['game_add_time']?></a>
+                    </div>
+                    <div class="postbody">
+                        <div class="postcontent"><?= $v['game_content']?><br /><br /><a href="<?= $v['game_url']?>" class="button">进入游戏 <span class="buttonarrow"></span></a></div>
+                    </div>
+                </div>
+                <div class="sixteen columns blogdivider alpha"></div>
+                <div class="clear"></div>
+            </div> 
+            <? endforeach;?>
+            <!-- Pagination -->
+                    
+            <?= $page?>
+            
+            <div class="clear"></div>
+		</div>
+        
+        <!-- Space Adjuster
+        ================================================== -->
+        
+        <div class="sixteen columns bottomadjust"></div>
+   
+	</div><!-- container -->
+
+	<!-- Footer
+	================================================== -->
+
+<? $this->load->view('Home/public/footer.html')?>

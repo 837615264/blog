@@ -1,0 +1,131 @@
+<? $this->load->view('Admin/header.html')?>
+<section id="content" class="container">
+    <!-- 面包屑 -->
+    <ol class="breadcrumb hidden-xs">
+        <li><a href="#">主页</a></li>
+        <li><a href="#">项目管理</a></li>
+        <li class="active">项目列表</li>
+    </ol>
+
+    <h4 class="page-title">项目列表</h4>
+    <hr class="whiter" />
+    <div class="block-area" id="tableStriped">
+        <h3 class="block-title">项目列表</h3>
+        <div tabindex="5005" style="overflow: hidden;" class="table-responsive overflow">
+            <table class="tile table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>项目标题</th>
+                    <th>项目内容</th>
+                    <th>添加时间</th>
+                    <th>项目展示图片</th>
+                    <th>项目路径</th>
+                    <th>点击量</th>
+                    <th>点赞量</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                <? foreach($project_info as &$v):?>
+                <tr>
+                    <td><?= $v['project_id']?></td>
+                    <td><?= $v['project_title']?></td>
+                    <? if(strlen($v['project_content'])>60):?>
+                    <? $v['project_content']=substr($v['project_content'],0,60).'...';?>
+                    <? endif;?>
+                    <td><?= $v['project_content']?></td>
+                    <td><?= $v['project_add_time']?></td>
+                    <td><img src="<?= base_url().'public/home/images/project/'.$v['project_image']?>" alt="项目图片" style="width: 50px"/></td>
+                    <td><?= $v['project_url']?></td>
+                    <td><?= $v['project_hits']?></td>
+                    <td><?= $v['project_up']?></td>
+                    <td><a href="<?= site_url('Admin/Project/project_update').'/'.$v['project_id']?>"><input value="修改" class="btn" type="button"></a>&nbsp;&nbsp;<input value="删除" class="btn" type="button" id="del" pid="<?= $v['project_id']?>"></td>
+                </tr>
+                <? endforeach;?>
+                </tbody>
+            </table>
+        </div>
+        <div id="page_box">
+            <?= $page?>
+        </div>
+        <button class="btn" disabled="disabled" id="page_now">第1页</button>
+    </div>
+    <div class="block-area">
+
+    </div>
+</section>
+
+<!-- Javascript Libraries -->
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script> <!-- jQuery Library -->
+
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- UX -->
+<script src="js/scroll.min.js"></script> <!-- Custom Scrollbar -->
+
+<!-- Other -->
+<script src="js/calendar.min.js"></script> <!-- Calendar -->
+<script src="js/feeds.min.js"></script> <!-- News Feeds -->
+
+
+<!-- All JS functions -->
+<script src="js/functions.js"></script>
+</body>
+</html>
+<script>
+    $(document).on("click","#del",function(){
+        if(confirm("确认要删除吗？")){
+            var _this=$(this)
+            var project_id=_this.attr("pid")
+            $.ajax({
+                url:"<?= site_url('Admin/Project/project_del')?>",
+                type:"POST",
+                data:"project_id="+project_id,
+                dataType:"json",
+                success:function(msg){
+                    if(msg.error==1){
+                        _this.parent().parent().remove()
+                    }
+                }
+            })
+        }
+    })
+
+    $(document).on("click",".btn-sm",function(){
+        var url=$(this).children("a").attr("href")
+        getPage(url)
+    })
+
+    function getPage(url="http://www.blog.com/index.php/Admin/Project/project_list_ajax/0"){
+        $.ajax({
+            url:url,
+            data:"",
+            dataType:"json",
+            success:function(msg){
+                $("#tbody").empty()
+                var site="<?= site_url('Admin/Project/project_update')?>/"
+                $.each(msg.project_info,function(k,v){
+                    var tr=$("<tr></tr>")
+                    tr.append('<td>'+ v.project_id+'</td>')
+                    tr.append('<td>'+ v.project_title+'</td>')
+                    if(v.project_content.length>60){
+                        v.project_content=v.project_content.substr(0,60)+"..."
+                    }
+                    tr.append('<td>'+ v.project_content+'</td>')
+                    tr.append('<td>'+ v.project_add_time+'</td>')
+                    tr.append('<td><img src="<?= base_url()?>public/home/images/project/'+v.project_image+'" alt="项目图片" style="width: 50px"/></td>')
+                    tr.append('<td>'+ v.project_url+'</td>')
+                    tr.append('<td>'+ v.project_hits+'</td>')
+                    tr.append('<td>'+ v.project_up+'</td>')
+                    tr.append('<td><a href="'+site+ v.project_id+'"><input value="修改" class="btn" type="button"></a>&nbsp;&nbsp;<input value="删除" class="btn" type="button" id="del" pid="'+v.project_id+'"></td>')
+                    $("#tbody").append(tr)
+                })
+                $("#page_box").html(msg.page)
+                $("#page_now").html("第"+msg.page_now+"页")
+            }
+        })
+    }
+</script>

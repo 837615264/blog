@@ -1,0 +1,183 @@
+<? $this->load->view('Home/public/header.html')?>
+
+<!-- Page Title And Social
+================================================== -->
+
+<div class="pagetitle">
+    <div class="pagetitleholder"><h1><?= $header['header_article_intro']?></h1></div>
+
+    <!--div class="headersearch">
+        <form class="searchform" method="get" action="#">
+        <input name="s" id="s" type="text" onFocus="if(this.value == 'Enter Search here...') { this.value = ''; }" onBlur="if(this.value == '') { this.value = 'Enter Search here...'; }" value="Enter Search here..." />
+        </form>
+    </div-->
+</div>
+        
+        <!-- Line Divider
+		================================================== -->
+        
+        <div class="sixteen columns linedivider" style="margin-top: 0;"></div>
+        
+        <!-- Content Holder -->
+		<div class="eleven columns row textblock left blogsingle">
+        
+        	<!-- Blogpost -->
+            <div class="blogpost row">
+                <div class="blogdate">
+                    <div class="month"><?= $article['month']?></div>
+                    <div class="day"><?= $article['day']?></div>
+                    <div class="year"><?= $article['year']?></div>
+                </div>
+                <div class="postholder">
+                	<div class="blogtitle"><h2><?= $article['article_title']?></h2></div>
+                    <div class="postinfo">
+                    by RUPAN
+                    </div>
+                    <div class="blogimage">
+                    	<div class="bloginnershadow"></div>
+                        <div class="flexslider postslider clearfix">
+                            <ul class="slides">
+                                <li>
+                                    <? if(empty($article['article_image'])):?>
+                                    <img src="<?= base_url().'public/home/default.png'?>" alt="<?= $article['article_title']?>" />
+                                    <? else:?>
+                                    <img src="<?= base_url().'public/home/images/article/'.$article['article_image']?>" alt="<?= $article['article_title']?>" />
+                                    <? endif;?>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="postbody">
+                        <div class="postcontent">
+                    
+                            <p><?= $article['article_content']?></p>
+                    
+                    	</div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div> 
+            
+            <!-- Post Tags -->
+            
+            <div class="eleven columns row divide alpha">
+				<table><tr style="width:100%">
+					<td style="white-space:nowrap;"><h3 class="titledivider">标签</h3></td>
+					<td style="width:100%"><div class="dividerline"></div></td>
+				</tr></table>
+			</div>
+            
+            <div class="posttags">
+                <? if(isset($article['article_tag'])):?>
+                <? foreach($article['article_tag'] as $v):?>
+            	<a href="<?= site_url('Home/Tag/tag_search').'/'.$v['tag_id']?>"><?= $v['tag_name']?></a>
+                <? endforeach;?>
+                <? endif;?>
+            </div>
+
+            <!-- Post Comments -->
+                    
+            <div id="comments" class="eleven columns row alpha">
+            
+                <div class="divide">
+                    <table><tr style="width:100%">
+                        <td style="white-space:nowrap;"><h3 class="titledivider">评论</h3></td>
+                        <td style="width:100%"><div class="dividerline"></div></td>
+                    </tr></table>
+                </div>
+                
+                <!-- Comment -->
+
+                <ul id="comment">
+                    <? foreach($comment as $v):?>
+                    <!-- Reply -->
+                    <li class="depth-1">
+                        <div class="commentwrap">
+                            <div class="author"><a href="javascript:;"><?= $v['comment_user']?></a></div>
+                            <div class="timestamp"><?= $v['comment_add_time']?></div><div class="clear"></div>
+                            <div class="postertext">
+                                <p><?= $v['comment_content']?></p>
+                            </div><div class="clear"></div>
+                        </div>
+                    </li>
+                    <? endforeach;?>
+                </ul>
+                
+                <div class="clear"></div>
+            </div>
+            
+            <!-- Comment Form -->
+                    
+            <div id="respond">
+                <div class="eleven columns row divide alpha">
+                    <table><tr style="width:100%">
+                        <td style="white-space:nowrap;"><h3 class="titledivider">发表评论</h3></td>
+                        <td style="width:100%"><div class="dividerline"></div></td>
+                    </tr></table>
+                </div>
+
+                    <input type="text" id="reply_name" class="requiredfield" onfocus="if(this.value == '昵称 *') { this.value = ''; }" onblur="if(this.value == '') { this.value = '昵称 *'; }" value="昵称 *" />
+                            
+                    <input type="text" id="reply_email" class="requiredfield" onfocus="if(this.value == '邮箱 *') { this.value = ''; }" onblur="if(this.value == '') { this.value = '邮箱 *'; }" value="邮箱 *" />
+                    <input type="text" id="reply_relation" class="last" onfocus="if(this.value == 'QQ / 微信') { this.value = ''; }" onblur="if(this.value == '') { this.value = 'QQ / 微信'; }" value="QQ / 微信" />
+                    <textarea id="reply_content" class="requiredfield" onfocus="if(this.value == '内容 *') { this.value = ''; }" onblur="if(this.value == '') { this.value = '内容 *'; }">内容 *</textarea>
+                    <button type="submit" name="send" id="submit">提交 <span class="buttonarrow"></span></button>
+
+            </div>
+ 
+            <div class="clear"></div>
+		</div>
+
+    <? $this->load->view('Home/public/side.html')?>
+        
+        <!-- Space Adjuster
+        ================================================== -->
+        
+        <div class="sixteen columns bottomadjust"></div>
+   
+	</div><!-- container -->
+
+	<!-- Footer
+	================================================== -->
+
+<? $this->load->view('Home/public/footer.html')?>
+<script>
+    $(document).on("click","#submit",function(){
+        var reg = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g
+        if($("#reply_name").val()==""||$("#reply_name").val()=="昵称 *"){
+            alert("请输入您的昵称")
+        }else if($("#reply_email").val()==""||$("#reply_email").val()=="邮箱 *"){
+            alert("请输入您的邮箱")
+        }else if($("#reply_content").val()==""||$("#reply_content").val()=="内容 *"){
+            alert("请输入您要回复的内容")
+        }else if(!reg.test($("#reply_email").val())){
+            alert("请输入正确的邮箱以便与您联系")
+        }else{
+            var formdata=new FormData()
+            var _this=$(this)
+            formdata.append('comment_user',$("#reply_name").val())
+            formdata.append('comment_email',$("#reply_email").val())
+            formdata.append('comment_relation',$("#reply_relation").val())
+            formdata.append('comment_content',$("#reply_content").val())
+            formdata.append('article_id',"<?= $article['article_id']?>")
+            formdata.append('comment_type',"文章")
+            $.ajax({
+                url:"<?= site_url('Home/Comment/comment_add')?>",
+                cache: false,
+                processData: false,
+                contentType: false,
+                data:formdata,
+                dataType:"json",
+                type:"POST",
+                success:function(msg){
+                    if(msg.status==1){
+                        $("#comment").append('<li class="depth-1"><div class="commentwrap"><div class="author"><a href="javascript:;">'+msg.message.comment_user+'</a></div><div class="timestamp">'+msg.message.comment_add_time+'</div><div class="clear"></div><div class="postertext"><p>'+msg.message.comment_content+'</p></div><div class="clear"></div></div></li>')
+                    }else{
+                        alert(msg.error)
+                    }
+                }
+            })
+        }
+
+    })
+</script>
