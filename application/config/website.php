@@ -36,7 +36,7 @@ $config['banner']=array(
 );
 
 $config['header']=array(
-    'header_index'=>'欢迎来到<span class="themecolor"><a href="http://101.37.67.249/index.php/Home/Home/aboutMe">RUPAN</a></span>的博客',
+    'header_index'=>'欢迎来到<span class="themecolor"><a href="http://www.51neko.com/index.php/Home/Home/aboutMe">RUPAN</a></span>的博客',
     'header_home'=>'享受孤独，品味寂寞',
     'header_article'=>'总有一天，我有属于我的天',
     'header_article_intro'=>'总有一天，我有属于我的天<br>by <span style="color:#ffd200;">RUPAN</span>.',
