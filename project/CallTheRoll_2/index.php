@@ -5,7 +5,7 @@
 <head>
     <script src="./Js/jquery-1.7.2.min.js"></script>
     <meta charset="UTF-8">
-    <title>1504PhpA班点名表</title>
+    <title>点名表</title>
     <link rel="stylesheet" href="Css/Common.css"/>
     <?php if($num>0){?>
         <link rel="stylesheet" href="Css/Tarot_style.css"/>
