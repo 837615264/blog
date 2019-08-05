@@ -18,7 +18,7 @@ class Login extends CI_Controller {
                 $result['error']=0;
                 $result['message']="验证码有误";
             }else{
-                if(md5($data['username'])=="21232f297a57a5a743894a0e4a801fc3"&&md5($data['password'])=="e10adc3949ba59abbe56e057f20f883e"){
+                if(md5($data['username'])=="f65de49820c0f0f2c1a4bbee2871adad"&&md5($data['password'])=="0437d02a375ade85f6d85935aafd77c7"){
                     $this->session->set_userdata("admin_id",1);
                     $this->input->set_cookie("admin_name","f65de49820c0f0f2c1a4bbee2871adad",7200);
                     $result['error']=1;
