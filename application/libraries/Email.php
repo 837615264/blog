@@ -24,7 +24,7 @@ class Email{
         $mail->CharSet    ="UTF-8";			     //编码
         $mail->From       = 'wuwuwuliuliyi@163.com';	 		 //发件人完整的邮箱名称
         $mail->FromName   = $name;			 //发信人署名
-        $mail->Subject    = "您的网站(bilibilii.cn)有新的消息！！！";  			 //信的标题
+        $mail->Subject    = "您的网站(51neko.com)有新的消息！！！";  			 //信的标题
         $mail->MsgHTML($code);  				 //发信主体内容
         /*发送邮件*/
         $mail->AddAddress("837615264@qq.com");  			 //收件人地址
